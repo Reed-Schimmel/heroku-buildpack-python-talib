@@ -23,7 +23,9 @@ if [ "$TALIB" -eq "0" ]; then
   echo "TA-Lib library successfully installed" | indent
 
   /app/.heroku/python/bin/pip install TA-Lib 2>&1 | cleanup | indent
-
+  /app/.heroku/python/bin/pip install -U git+https://github.com/Reed-Schimmel/tuneta 2>&1 | cleanup | indent
+  /app/.heroku/python/bin/pip install --force-reinstall --no-cache-dir --no-deps TA-Lib 2>&1 | cleanup | indent
+  
   rm -rf $CACHE_DIR/.heroku/python/
   cp -R /app/.heroku/python/ $CACHE_DIR/.heroku/
 fi
